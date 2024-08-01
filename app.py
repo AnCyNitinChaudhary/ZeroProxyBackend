@@ -18,6 +18,10 @@ known_face_encodings = [rahi_face_encoding, biden_face_encoding]
 known_face_names = ["9921103145", "9921103163"]
 print("Known faces loaded.")
 
+@app.route('/')
+def index():
+    return "Hello,World!"
+
 @app.route('/validate', methods=['POST'])
 def validate_image():
     print("Received request for validation.")
@@ -70,6 +74,8 @@ def validate_image():
     except Exception as e:
         print(f"Error during face recognition: {e}")
         return jsonify({"error": "Error during face recognition"}), 500
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

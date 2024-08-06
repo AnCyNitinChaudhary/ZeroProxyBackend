@@ -44,7 +44,6 @@ def index():
 
 @app.route('/validate', methods=['POST'])
 def validate_image():
-<<<<<<< HEAD
     # print("Received request for validation.")
     # if 'image' not in request.files:
     #     print("No image file found in the request.")
@@ -98,58 +97,6 @@ def validate_image():
     # except Exception as e:
     #     print(f"Error during face recognition: {e}")
     #     return jsonify({"error": "Error during face recognition"}), 500
-=======
-    print("Received request for validation.")
-    if 'image' not in request.files:
-        print("No image file found in the request.")
-        return jsonify({"error": "No image file found in the request"}), 400
-
-    file = request.files['image']
-    print(f"Received image file: {file.filename}")
-
-    try:
-        # Read image from request
-        image_stream = io.BytesIO(file.read())
-        image = Image.open(image_stream)
-
-        # Convert to RGB format
-        if image.mode != 'RGB':
-            image = image.convert('RGB')
-
-        image = np.array(image)
-    except Exception as e:
-        print(f"Error processing the image file: {e}")
-        return jsonify({"error": "Error processing the image file"}), 400
-
-    print("Image file successfully read and converted to RGB.")
-
-    # Perform face recognition
-    try:
-        face_locations = face_recognition.face_locations(image)
-        face_encodings = face_recognition.face_encodings(image, face_locations)
-
-        face_names = []
-        for face_encoding in face_encodings:
-            matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
-            name = "Unknown"
-            if True in matches:
-                first_match_index = matches.index(True)
-                name = known_face_names[first_match_index]
-
-            if name != "Unknown":
-                face_names.append(name)
-            if len(face_names) > 0:
-                break
-
-        print(f"Face recognition completed. Detected faces: {face_names}")
-
-        output_json = json.dumps({"face_name": face_names if face_names else ['1234567890']})
-        return output_json
-
-    except Exception as e:
-        print(f"Error during face recognition: {e}")
-        return jsonify({"error": "Error during face recognition"}), 500
->>>>>>> a31dc119abb13a1b62ad15a1d99078935b741459
 
 
 

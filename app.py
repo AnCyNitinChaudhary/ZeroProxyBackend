@@ -1,20 +1,12 @@
 from flask import Flask, request, jsonify
-<<<<<<< HEAD
 # import face_recognition
 # import numpy as np
 # import io
 # from PIL import Image
-=======
-import face_recognition
-import numpy as np
-import io
-from PIL import Image
->>>>>>> a31dc119abb13a1b62ad15a1d99078935b741459
 import json
 app = Flask(__name__)
 
 # Load known faces
-<<<<<<< HEAD
 # print("Loading known faces.....")
 # rahi_image = face_recognition.load_image_file("9921103145.jpg")
 # rahi_face_encoding = face_recognition.face_encodings(rahi_image)[0]
@@ -25,18 +17,6 @@ app = Flask(__name__)
 # known_face_encodings = [rahi_face_encoding, biden_face_encoding]
 # known_face_names = ["9921103145", "9921103163"]
 # print("Known faces loaded.")
-=======
-print("Loading known faces...")
-rahi_image = face_recognition.load_image_file("9921103145.jpg")
-rahi_face_encoding = face_recognition.face_encodings(rahi_image)[0]
-
-biden_image = face_recognition.load_image_file("9921103163.jpg")
-biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
-
-known_face_encodings = [rahi_face_encoding, biden_face_encoding]
-known_face_names = ["9921103145", "9921103163"]
-print("Known faces loaded.")
->>>>>>> a31dc119abb13a1b62ad15a1d99078935b741459
 
 @app.route('/')
 def index():
